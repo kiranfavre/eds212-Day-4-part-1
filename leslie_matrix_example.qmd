@@ -1,0 +1,50 @@
+---
+title: "Leslie Matrix example via Quarto"
+author: "Kiran Favre"
+format: html
+editor: visual
+---
+
+## Leslie Matrix example
+
+We are going to model population changes using the same example as in lecture.
+
+```{r}
+
+insect_leslie <- matrix(c(0, 0, 600, 0.2, 0, 0, 0, 0.08, 0), 
+                        nrow= 3, 
+                        ncol = 3, 
+                        byrow= TRUE)
+
+insect_leslie
+```
+
+We made the matrix! Now we will give this matrix an initial condition to run some calculations.
+
+```{r}
+
+#initial condition of 12000 eggs, 700 larvae and 500 females
+
+insect_yr0 <- c(12000, 700, 500)   #this is a vector
+```
+
+```{r}
+insect_yr1 <- insect_leslie %*% insect_yr0
+
+insect_yr1
+```
+
+Estimate populations at each life stage at year 2 and year 3
+
+```{r}
+#year 2 
+insect_yr2 <- insect_leslie %*% insect_yr1
+
+insect_yr2
+```
+
+```{r}
+insect_yr3 <- insect_leslie %*% insect_yr2
+
+insect_yr3
+```
